@@ -1,0 +1,6 @@
+---
+let title = 'All Tags'
+let description = 'All the tags used so far...'
+const allPosts = await Astro.glob('../posts/*.mdx');
+const tags = [...new Set([].concat.apply([], allPosts.map(post => post.frontmatter.tags)))]
+---

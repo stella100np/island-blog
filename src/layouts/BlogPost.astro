@@ -2,24 +2,43 @@
 import { SEO } from "astro-seo";
 import BlogHeader from '../components/BlogHeader.astro';
 import BlogPost from '../components/BlogPost.astro';
+import BaseHead from "../components/BaseHead.astro";
+import BodyLayout from "./BodyLayout.astro";
+import Icon from "astro-icon";
 
 
 const { content } = Astro.props;
+console.log(content)
 const { title, description, publishDate, author, heroImage, permalink, alt } = content;
 ---
 
-<html lang={content.lang || 'en'}>
-	<head>
-		<SEO title={title} description={description} />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css"/>
-	</head>
-
-	<body>
-		<BlogHeader />
-		<div class="wrapper">
-			<BlogPost {title} {author} {heroImage} {publishDate} {alt}>
-				<slot />
-			</BlogPost>
+<html lang={content.lang || 'en' }>
+<BaseHead title={title} description={description}>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css" />
+</BaseHead>
+<BodyLayout>
+	<BlogHeader />
+	<div class="overflow-hidden">
+		<div class="max-w-7xl mx-auto">
+			<div class="flex px-4 pt-8 pb-10 lg:px-8">
+				<a class="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
+					href="/blog">
+					<Icon name="heroicons-outline:chevron-left"
+						class="overflow-visible mr-1 text-slate-400 w-auto h-6 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+					Go back
+				</a>
+			</div>
 		</div>
-	</body>
+		<div class="px-4 sm:px-6 md:px-8">
+			<div class="max-w-3xl mx-auto pb-28">
+				<main>
+					<BlogPost {title} {author} {heroImage} {publishDate} {alt}>
+						<slot />
+					</BlogPost>
+				</main>
+			</div>
+		</div>
+	</div>
+</BodyLayout>
+
 </html>

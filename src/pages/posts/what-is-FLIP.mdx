@@ -1,0 +1,63 @@
+---
+title: "FLIP 系统介绍：什么是 FLIP"
+publishDate: 12 Sep 2021
+tags: ['FLIP', 'animation', 'flutter', 'flutter hero', 'vue', 'react', '动画']
+draft: false
+name: Nate Moore
+description: FLIP 是 First, Last, Invert, Play 四个单词的首字母缩写
+layout: '../../layouts/BlogPost.astro'
+---
+
+或许你已经见到过 `FLIP` 这种技术制作的动画了。在 flutter 或者 material design 中，`FLIP` 动画被称"hero animation"。[一个典型的例子](https://codepen.io/davidkpiano/pen/JKEraQ/305a618d4dd75cbe8423183c70d6a43e?editors=1111)：在图片瀑布流中，点击某个图片，页面发生跳转，图片丝滑地放大并且出现在了另一个页面上。
+
+## 什么是 FLIP
+
+- First 指动画元素的初始状态
+- Last 指动画元素的最终状态
+- Invert 指先计算最终状态到最初状态的差值，然后向动画元素施加负的差值，目的是将动画元素变换回其初始状态
+- Play 指移除 Invert 中进行的变换操作、并利用 [requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)、[Web Animations API](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API) 完成动画。
+
+这样地解释显得抽象且枯燥，下面将逐步介绍其中技术细节。
+
+### 为什么需要 FLIP 技术
+
+动画往往给予用户有趣而深刻地体验，从而使你的网页脱颖而出。CSS 动画虽然能够满足大多数情况下的需求，但是在动画形式与交互体验仍然有诸多限制，而 `FLIP` 这一动画形式或可弥补 CSS 动画的部分缺陷。`FLIP` 技术大量使用了 JavaScript 来操作 html 中的动画元素，这样更加灵活，并且合理的技术应用依然能实现 60FPS 高流畅动画。
+
+### FLIP 代码例子
+
+```javascript
+
+// 获取元素的开始的位置 -- First
+let first = el.getBoundingClientRect()
+
+// 🔧 做一些操作，让元素移动位置或者改变透明度
+el.classList.add('totes-at-the-end')
+
+// ⌛ 获取元素的结束位置 -- Last
+let last = el.getBoundingClientRect()
+
+//  计算最终状态到最初状态的差值 -- Invert
+const invert = first.top - last.top
+
+//  借助 Web Animations API 移除 Invert 中进行的变换操作 -- play
+const player = el.animate(
+  [{ transform: `translateY(${invert}px)` }, { transform: 'translateY(0)' }],
+  {
+    duration: 300,
+    easing: 'cubic-bezier(0,0,0.32,1)',
+  }
+)
+
+// 可选，动画结束做一些整理
+player.addEventListener('finish', tidyUpAnimations)
+```
+
+看起来十分地简单，但是这里有个问题，为什么在进行一些 js 操作之后，立即进行元素位置的获取，就会得到新的位置，而不是旧的位置？
+
+### FLIP 深层原理
+
+当我们执行了 `el.classList.add('totes-at-the-end')` 代码之后，浏览器就会立即进行布局（Layout）来重新计算元素的位置。一方面，在执行`let last = el.getBoundingClientRect()`时，布局（Layout）已经完成了，自然会得到元素新的位置，另一方面，这是浏览器的绘图（Paint）流程还没有开始，在屏幕上元素还在它旧的位置，等到上面的 js 代码全部执行完成才开始绘图（Paint）等之后的步骤。
+
+总的来说，`FLIP` 技术利用浏览器渲染流程中的布局与绘图流程，所以理解其原理需要开发者对浏览器渲染有一定的了解。
+
+之后，我将介绍`FLIP`的各种应用，包括在`vue`和`react`等框架中。
