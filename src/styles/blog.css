@@ -4,49 +4,57 @@
 .token.selector .class,
 .token.selector.class,
 .token.function {
-  @apply text-pink-400;
+  --tw-text-opacity: 1;
+  color: rgb(244 114 182 / var(--tw-text-opacity));
 }
 
 .token.attr-name,
 .token.rule,
 .token.pseudo-class,
 .token.important {
-  @apply text-slate-300;
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
 }
 
 .token.keyword {
-	color: #c792ea;
-	font-style: italic;
+  color: #c792ea;
+  font-style: italic;
 }
 
 .token.attr-value,
 .token.class,
 .token.string {
-  @apply text-sky-300;
+  --tw-text-opacity: 1;
+  color: rgb(125 211 252 / var(--tw-text-opacity));
 }
 
 
 .token.punctuation,
 .token.attr-equals {
-  @apply text-slate-500;
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
 }
 
 .token.attr-value * {
-  @apply text-sky-300;
+  --tw-text-opacity: 1;
+  color: rgb(125 211 252 / var(--tw-text-opacity));
 }
 
 .token.attr-value .attr-equals,
-.token.attr-value .attr-equals + .punctuation,
-.token.attr-value > .punctuation:last-child {
-  @apply text-slate-500;
+.token.attr-value .attr-equals+.punctuation,
+.token.attr-value>.punctuation:last-child {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
 }
 
 .token.property {
-  @apply text-sky-300;
+  --tw-text-opacity: 1;
+  color: rgb(125 211 252 / var(--tw-text-opacity));
 }
 
 .token.unit {
-  @apply text-teal-200;
+  --tw-text-opacity: 1;
+  color: rgb(153 246 228 / var(--tw-text-opacity));
 }
 
 .language-shell .token:not(.comment),
@@ -55,37 +63,75 @@
 }
 
 .language-css .token.function {
-  @apply text-teal-200;
+  --tw-text-opacity: 1;
+  color: rgb(153 246 228 / var(--tw-text-opacity));
 }
 
 .token.comment,
 .token.module,
 .token.operator,
 .token.combinator {
-  @apply text-slate-400;
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
 .token.unchanged {
-  @apply block;
+  display: block;
 }
 
 .token.deleted,
 .token.inserted {
-  @apply block relative -mx-9 pl-8 pr-5 border-l-4 before:absolute before:top-0 before:left-4;
+  display: block;
+  position: relative;
+  margin-left: -2.25rem;
+  margin-right: -2.25rem;
+  padding-left: 2rem;
+  padding-right: 1.25rem;
+  border-left-width: 4px;
+
+}
+
+.token.deleted::before,
+.token.inserted::before {
+  position: absolute;
+  content: var(--tw-content);
+  top: 0px;
+  left: 1rem;
 }
 
 .token.inserted {
-  @apply bg-teal-400/[0.15] border-teal-400 before:content-['+'] before:text-teal-400;
+  background-color: rgb(45 212 191 / 0.15);
+  --tw-border-opacity: 1;
+  border-color: rgb(45 212 191 / var(--tw-border-opacity));
+}
+
+.token.inserted::before {
+  --tw-content: '+';
+  content: var(--tw-content);
+  --tw-text-opacity: 1;
+  color: rgb(45 212 191 / var(--tw-text-opacity));
 }
 
 .token.deleted {
-  @apply bg-rose-500/[0.15] border-rose-400 before:content-['-'] before:text-rose-400;
+  background-color: rgb(244 63 94 / 0.15);
+  --tw-border-opacity: 1;
+  border-color: rgb(251 113 133 / var(--tw-border-opacity));
+}
+
+.token.deleted::before {
+  --tw-content: '-';
+  --tw-text-opacity: 1;
+  content: var(--tw-content);
+  color: rgb(251 113 133 / var(--tw-text-opacity));
 }
 
 pre[class^='language-diff-'] {
-  @apply flex px-9;
+  display: flex;
+  padding-left: 2.25rem;
+  padding-right: 2.25rem;
 }
 
-pre[class^='language-diff-'] > code {
-  @apply flex-none min-w-full;
+pre[class^='language-diff-']>code {
+  flex: none;
+  min-width: 100%;
 }

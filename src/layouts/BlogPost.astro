@@ -1,5 +1,4 @@
 ---
-import { SEO } from "astro-seo";
 import BlogHeader from '../components/BlogHeader.astro';
 import BlogPost from '../components/BlogPost.astro';
 import BaseHead from "../components/BaseHead.astro";
@@ -12,7 +11,7 @@ console.log(content)
 const { title, description, publishDate, author, heroImage, permalink, alt } = content;
 ---
 
-<html lang={content.lang || 'en' }>
+<html lang={content.lang || 'zh-CN' }>
 <BaseHead title={title} description={description}>
 	
 </BaseHead>
@@ -22,7 +21,7 @@ const { title, description, publishDate, author, heroImage, permalink, alt } = c
 		<div class="max-w-7xl mx-auto">
 			<div class="flex px-4 pt-8 pb-10 lg:px-8">
 				<a class="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
-					href="/blog">
+					href="/">
 					<Icon name="heroicons-outline:chevron-left"
 						class="overflow-visible mr-1 text-slate-400 w-auto h-6 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
 					Go back

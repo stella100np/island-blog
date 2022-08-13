@@ -13,7 +13,7 @@ const MAX_DISPLAY = 5
 
 // Data Fetching: List all Markdown posts in the repo.
 
-let allPosts = await Astro.glob('./posts/*.mdx');
+let allPosts = await Astro.glob('./posts/**.mdx');
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 
 // Full Astro Component Syntax:
