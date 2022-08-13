@@ -13,9 +13,6 @@ module.exports = {
 							marginTop: '3em',
 							marginBottom: '3em',
 						},
-						'h1, h2, h3': {
-							letterSpacing: '-0.025em',
-						},
 						h2: {
 							marginBottom: `${16 / 24}em`,
 						},
@@ -98,27 +95,9 @@ module.exports = {
 							margin: '0 1px',
 						},
 						code: {
+							color:theme('colors.pink.400'),
 							fontWeight: theme('fontWeight.medium'),
 							fontVariantLigatures: 'none',
-						},
-						pre: {
-							color: theme('colors.slate.50'),
-							borderRadius: theme('borderRadius.xl'),
-							padding: theme('padding.5'),
-							boxShadow: theme('boxShadow.md'),
-							display: 'flex',
-							marginTop: `${20 / 14}em`,
-							marginBottom: `${32 / 14}em`,
-						},
-						'p + pre': {
-							marginTop: `${-4 / 14}em`,
-						},
-						'pre + pre': {
-							marginTop: `${-16 / 14}em`,
-						},
-						'pre code': {
-							flex: 'none',
-							minWidth: '100%',
 						},
 						table: {
 							fontSize: theme('fontSize.sm')[0],
@@ -170,9 +149,6 @@ module.exports = {
 						hr: {
 							borderColor: theme('colors.slate.200'),
 							opacity: '0.05',
-						},
-						pre: {
-							boxShadow: 'inset 0 0 0 1px rgb(255 255 255 / 0.1)',
 						},
 						a: {
 							color: theme('colors.white'),

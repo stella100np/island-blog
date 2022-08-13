@@ -7,6 +7,7 @@ name: Nate Moore
 description: FLIP 是 First, Last, Invert, Play 四个单词的首字母缩写
 layout: '../../layouts/BlogPost.astro'
 ---
+import { Code } from 'astro/components';
 
 或许你已经见到过 `FLIP` 这种技术制作的动画了。在 flutter 或者 material design 中，`FLIP` 动画被称"hero animation"。[一个典型的例子](https://codepen.io/davidkpiano/pen/JKEraQ/305a618d4dd75cbe8423183c70d6a43e?editors=1111)：在图片瀑布流中，点击某个图片，页面发生跳转，图片丝滑地放大并且出现在了另一个页面上。
 
@@ -25,8 +26,7 @@ layout: '../../layouts/BlogPost.astro'
 
 ### FLIP 代码例子
 
-```javascript
-
+```js
 // 获取元素的开始的位置 -- First
 let first = el.getBoundingClientRect()
 
@@ -39,7 +39,7 @@ let last = el.getBoundingClientRect()
 //  计算最终状态到最初状态的差值 -- Invert
 const invert = first.top - last.top
 
-//  借助 Web Animations API 移除 Invert 中进行的变换操作 -- play
+//  借助 Web Animations API 移除 Invert 中进行的变换操作 -- Play
 const player = el.animate(
   [{ transform: `translateY(${invert}px)` }, { transform: 'translateY(0)' }],
   {
@@ -56,8 +56,8 @@ player.addEventListener('finish', tidyUpAnimations)
 
 ### FLIP 深层原理
 
-当我们执行了 `el.classList.add('totes-at-the-end')` 代码之后，浏览器就会立即进行布局（Layout）来重新计算元素的位置。一方面，在执行`let last = el.getBoundingClientRect()`时，布局（Layout）已经完成了，自然会得到元素新的位置，另一方面，这是浏览器的绘图（Paint）流程还没有开始，在屏幕上元素还在它旧的位置，等到上面的 js 代码全部执行完成才开始绘图（Paint）等之后的步骤。
+当我们执行了 `el.classList.add('totes-at-the-end')` 代码之后，浏览器就会立即进行布局（Layout）来重新计算元素的位置。一方面，在执行 `let last = el.getBoundingClientRect()` 时，布局（Layout）已经完成了，自然会得到元素新的位置，另一方面，这是浏览器的绘图（Paint）流程还没有开始，在屏幕上元素还在它旧的位置，等到上面的 js 代码全部执行完成才开始绘图（Paint）等之后的步骤。
 
 总的来说，`FLIP` 技术利用浏览器渲染流程中的布局与绘图流程，所以理解其原理需要开发者对浏览器渲染有一定的了解。
 
-之后，我将介绍`FLIP`的各种应用，包括在`vue`和`react`等框架中。
+之后，我将介绍 `FLIP` 的各种应用，包括在 `vue` 和 `react` 等框架中。
