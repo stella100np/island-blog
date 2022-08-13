@@ -1,0 +1,52 @@
+---
+title: FLIP 系统介绍：共享元素过渡
+publishDate: '2022-08-10'
+tags: ['FLIP', 'animation', 'flutter', 'flutter hero', '动画']
+draft: false
+description: '共享元素过渡（shared element transition）'
+layout: '../../layouts/BlogPost.astro'
+---
+
+在[上篇](./what-is-FLIP)文章的代码中，展示了如何将 `FLIP` 技术应用到同一个元素上，接下来介绍另一种应用。
+
+
+
+## 共享元素过渡（shared element transition）
+
+它将 `FLIP` 应用
+- 同一个页面的不同元素上
+- 或者应用在不同页面的不同元素上
+
+无论上上述那种，元素在外观上大体相似，只是位置、文字、背景等有所不同。
+
+```javascript
+const firstElm = document.querySelector('.first-element')
+// First: 获取一个元素（firstElm）的大小及其相对于视口的位置。
+const first = firstElm.getBoundingClientRect()
+
+// First: 有时需要隐藏原来的元素
+firstElm.style.setProperty('visibility', 'hidden')
+
+//执行一些操作让元素发生变化，可以是click或者hover。
+// 通常这些操作会和另一个元素（lastElm）有关
+doSomething()
+
+// Last: 获取一个另一个元素（lastElm）的大小及其相对于视口的位置。
+const lastElm = document.querySelector('.last-element')
+const last = lastElm.getBoundingClientRect()
+// 其他步骤 Invert,Play 和之前类似。
+```
+### 一个真实的例子
+
+当点击左边列的元素时，它看起来好像是从原位置移动到了右边列，其实是第二列的新加入的元素从第一列旧元素的位置回退到自己原来的位置。
+
+**建议去codepen体验，便于刷新**
+
+<section class="no-prose">
+<p class="codepen" data-height="400" data-theme-id="light" data-default-tab="js,result" data-slug-hash="NWYBYbQ" data-preview="true" data-user="ShimaRin" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/ShimaRin/pen/NWYBYbQ">
+  Untitled</a> by 志摩凛 (<a href="https://codepen.io/ShimaRin">@ShimaRin</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async is:inline src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+</section>
