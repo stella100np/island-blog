@@ -1,0 +1,35 @@
+---
+import BlogPostPreview from "../../../components/BlogPostPreview.astro";
+import Intro from "../../../components/Intro.astro";
+import Paginator from "../../../components/Paginator.astro";
+import DefaultPageLayout from "../../../layouts/DefaultPageLayout.astro";
+import siteMetadata from "../../../data/siteMetadata";
+export async function getStaticPaths({ paginate }) {
+    const allPosts = await Astro.glob('../../posts/*.mdx')
+
+    const allTags = [...new Set([].concat.apply([], allPosts.map(post => post.frontmatter.tags)))]
+    return Array.from(allTags).map((tag) => {
+        const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag))
+        return paginate(filteredPosts, { params: { tag }, pageSize: siteMetadata.pageSize })
+    });
+}
+const { page } = Astro.props // pages prop passed in `getStaticPaths`
+const { tag } = Astro.params
+---
+
+<DefaultPageLayout title={`标签 ${tag}`} description={`在${tag}标签下发布的所有文章`}>
+    <Intro title={`标签：${tag}`} description={`在${tag}标签下发布的所有文章`} />
+    <section
+        class="relative sm:pb-12 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
+        <div
+            class="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-slate-800 sm:block">
+        </div>
+        <div class="space-y-16">
+            {page.data.map((post) =>
+            <BlogPostPreview post={post} />)}
+
+        </div>
+    </section>
+    <Paginator page={page} />
+
+</DefaultPageLayout>

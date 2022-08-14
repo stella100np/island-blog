@@ -1,0 +1,39 @@
+---
+import Icon from "astro-icon";
+import Intro from "../components/Intro.astro";
+import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
+import bird from "../assets/TakasakiChidori.jpg?url"
+import garden from "../assets/flowers4_story_garden.png?url"
+import siteMetadata from "../data/siteMetadata";
+let title = 'about'
+let description = 'about me and the blog'
+---
+
+<DefaultPageLayout title={title} description={description} spokenLang="en">
+    <Intro title={title} description={description} />
+    <div class="flex flex-col">
+        <div class="rounded-lg h-50 overflow-hidden">
+            <img alt="a garden" class=" object-contain object-center h-full w-full" src={garden}>
+        </div>
+        <div class="flex flex-col sm:flex-row mt-10">
+            <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+                <img src={bird}
+                    class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400"
+                    alt="Takasaki Chidori">
+                <div class="flex flex-col items-center text-center justify-center">
+                    <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{siteMetadata.author}</h2>
+                    <div class="w-12 h-1 bg-sky-500 rounded mt-2 mb-4"></div>
+                    <p class="text-base">Takasaki Chidori is a main character from the yuri visual novel series 《FLOWERS
+                        - <span lang="fr">Le volume sur été-</span> 》</p>
+                </div>
+            </div>
+            <div
+                class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+                <p class="leading-relaxed text-lg mb-4">My personality is like her <span lang="fr">amitié</span> Yaegaki
+                    Erika, so I often use {siteMetadata.author} as my screen name. </p>
+                <p class="leading-relaxed text-lg mb-4">This blog focuses on the field of data visualization and web
+                    animation, and it is power by Astro.</p>
+            </div>
+        </div>
+    </div>
+</DefaultPageLayout>
