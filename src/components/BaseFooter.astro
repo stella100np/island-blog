@@ -1,0 +1,22 @@
+---
+import siteMetadata from "../data/siteMetadata";
+import { Icon } from "astro-icon";
+
+---
+
+<footer class="text-sm leading-6 mt-16 mx-auto max-w-7xl">
+  <div class="pt-10 pb-28 border-t border-slate-200 sm:flex justify-between text-slate-500 dark:border-slate-200/5">
+    <h2>Copyright © 2022 Tailwind Labs Inc.
+    </h2>
+    <div class="flex space-x-4 text-slate-400 dark:text-slate-500">
+      <a href={`mailto:${siteMetadata.email}`} class="block h-6 w-6 hover:text-slate-500 dark:hover:text-slate-400">
+        <span class="sr-only">email</span>
+        <Icon name="ri:mail-send-fill" />
+      </a>
+      <a href={siteMetadata.discord} class="block h-6 w-6 hover:text-slate-500 dark:hover:text-slate-400">
+        <span class="sr-only">Discord</span>
+        <Icon name="ri:discord-fill" />
+      </a>
+    </div>
+  </div>
+</footer>

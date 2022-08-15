@@ -3,17 +3,17 @@ import BlogHeader from '../components/BlogHeader.astro';
 import BlogPost from '../components/BlogPost.astro';
 import BaseHead from "../components/BaseHead.astro";
 import BodyLayout from "./BodyLayout.astro";
-import Icon from "astro-icon";
-
+import { Icon } from "astro-icon";
+import BaseFooter from '../components/BaseFooter.astro';
 
 const { content } = Astro.props;
-console.log(content)
+// console.log(content)
 const { title, description, publishDate, author, heroImage, permalink, alt } = content;
 ---
 
 <html lang={content.lang || 'zh-CN' }>
 <BaseHead title={title} description={description}>
-	
+
 </BaseHead>
 <BodyLayout>
 	<BlogHeader />
@@ -29,13 +29,15 @@ const { title, description, publishDate, author, heroImage, permalink, alt } = c
 			</div>
 		</div>
 		<div class="px-4 sm:px-6 md:px-8">
-			<div class="max-w-3xl mx-auto pb-28">
+			<div class="max-w-3xl mx-auto">
 				<main>
 					<BlogPost {title} {author} {heroImage} {publishDate} {alt}>
 						<slot />
 					</BlogPost>
 				</main>
+				<BaseFooter />
 			</div>
+
 		</div>
 	</div>
 </BodyLayout>
