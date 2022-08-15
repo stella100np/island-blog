@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon";
+import Intro from "../components/Intro.astro";
+import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
+import ms from "../assets/logos/ms.svg?url";
+import ge from "../assets/logos/ge.png?url";
+
+const title = `Projects`;
+const description = "Recent projects I have worked on...";
+const projects = [
+  {
+    'name': 'edu-china.microsoft.com',
+    img: ms,
+    link: "https://edu-china.microsoft.com/#/",
+    'desc': 'I have maintained and developed the Microsoft China Education website for about three years and contributed over 70% of the code.'
+  },
+  {
+    'name': 'GE CMEF',
+    link: "http://cmef.adjacentech.com:8081/#/",
+    img: ge,
+    'desc': 'At The China International Medical Equipment Fair(CMEF), I provided 3d  pages of a range of products for General Electric Company and 360° interactive pages of their solutions.'
+  },
+]
+
+---
+
+<DefaultPageLayout title={title} description={description} spokenLang="en">
+  <Intro title={title} description={description} />
+
+  <div class="flex flex-wrap">
+    {projects.map((proj) => ( <div class="p-2 md:w-1/2 sm:mb-0 mb-6 ">
+      <div class="rounded-lg h-64 overflow-hidden bg-sky-50">
+        <img alt="content" class="object-contain object-center h-full w-full scale-50 " src={proj.img}>
+      </div>
+      <h3 class="text-2xl  text-gray-900 mt-5">{proj.name}</h3>
+      <p class="text-base  font-medium font-sans  leading-relaxed mt-2 ">{proj.desc}</p>
+      <a class="text-sky-500 inline-flex items-center mt-3" href={proj.link}>
+        <span>Learn More</span>
+        <Icon name="heroicons-outline:arrow-right" class='h-5'></Icon>
+      </a>
+    </div>))}
+  </div>
+</DefaultPageLayout>
