@@ -9,7 +9,7 @@ import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://takasaki-chidori-astro-blog.vercel.app',
+  site: 'https://takasaki-chidori-blog.vercel.app/',
   integrations: [mdx(), tailwind(), react(), vue(), sitemap(),robotsTxt() ],
   vite: {
     ssr: {

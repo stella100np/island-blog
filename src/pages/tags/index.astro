@@ -3,13 +3,13 @@ import Icon from "astro-icon";
 import Intro from "../../components/Intro.astro";
 import DefaultPageLayout from "../../layouts/DefaultPageLayout.astro";
 
-let title = '全部标签'
-let description = '到目前为止使用的所有标签：'
+let title = 'All Tags'
+let description = 'All the tags used so far...'
 const allPosts = await Astro.glob('../posts/*.mdx');
 const tags = [...new Set([].concat.apply([], allPosts.map(post => post.frontmatter.tags)))]
 ---
 
-<DefaultPageLayout title={title} description={`包含以下标签：${tags.join('、')}`}>
+<DefaultPageLayout title={title} description={`Contains the following tags: ${tags.join('、')}`} spokenLang="en">
     <Intro title={title} description={description} />
     <ul class="list-none flex gap-2">
         {tags.map((tag) =>
