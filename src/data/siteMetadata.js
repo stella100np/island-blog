@@ -4,7 +4,7 @@ const siteMetadata = {
   headerTitle: 'Advanced FE blog',
   description: 'All the latest web tech, straight from the advanced front-end engineer.',
   language: 'zh-CN',
-  siteUrl: 'https://takasaki-chidori-blog.vercel.app',
+  siteUrl: 'https://island-tech-blog.pages.dev',
   siteRepo: 'https://github.com/stella100np/island-blog',
   siteLogo: '/static/images/logo.png',
   image: '/TakasakiChidori.jpg',
