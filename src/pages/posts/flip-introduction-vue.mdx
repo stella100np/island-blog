@@ -1,14 +1,17 @@
 ---
 title: "FLIP Systematic introduction: vue"
-publishDate: '2022-08-27'
-tags: ['FLIP','vue']
+publishDate: "2022-08-27"
+tags: ["FLIP", "vue"]
 draft: false
-description: 'FLIP Systematic introduction'
-layout: '../../layouts/BlogPost.astro'
+description: "FLIP Systematic introduction"
+layout: "../../layouts/BlogPost.astro"
 lang: "en"
 ---
+
 import { Sandpack } from "@codesandbox/sandpack-react";
 import vuecode from "../../example/flip/demo.vue?raw";
+
+![deepmind](/src/assets/deepmind-Vc0CmuIfMg0-unsplash.jpg)
 
 ## TL;DR
 
@@ -18,10 +21,20 @@ After changing the data, use [nextTick](https://vuejs.org/api/general.html#nextt
 
 When we change some reactive variables, `Vue.js` automatically updates the dom, but this update is not instantaneous. For example, when we set `current.value = v`, it triggers re-render, the `div` inside the `ol` will be changed.
 
-How do we know this rendering is over and the [Paint](./flip-introduction-prologue) has not yet begun? `Vue.js` provides a function to solve this problem: [nextTick](https://vuejs.org/api/general.html#nexttick). 
+How do we know this rendering is over and the [Paint](./flip-introduction-prologue) has not yet begun? `Vue.js` provides a function to solve this problem: [nextTick](https://vuejs.org/api/general.html#nexttick).
 After it ,we get a new dom, then we can gets some properties such as position and transparency.
-Further, we can continue the flip steps(invert and play)  like [those](./what-is-FLIP) before.
+Further, we can continue the flip steps(invert and play) like [those](./what-is-FLIP) before.
 
-<Sandpack template="vue3"  files={{"/src/App.vue": vuecode,}} client:only="react" class="no-prose" />
+<Sandpack
+  template="vue3"
+  options={{
+    showNavigator: true,
+    editorHeight: 350,
+    editorWidthPercentage: 70,
+  }}
+  files={{ "/src/App.vue": vuecode }}
+  client:only="react"
+  class="no-prose"
+/>
 
 Click "Rock" or "Jazz" to see how the menu bar changes.
