@@ -1,16 +1,43 @@
 ---
 title: FLIP 系统介绍：react
-publishDate: '2022-08-13'
-tags: ['FLIP', 'animation','react']
+publishDate: "2023-02-05"
+tags: ["FLIP", "animation", "react"]
 draft: false
-description: '在 react 中如何实现 FLIP '
-layout: '../../layouts/BlogPost.astro'
+description: "在 react 中如何实现 FLIP "
+layout: "../../layouts/BlogPost.astro"
 ---
 
 import { Sandpack } from "@codesandbox/sandpack-react";
+import framerjs from "../../example/FLIP/framer.js?raw";
+import theme from "../../example/theme.js";
+import framercss from "../../example/FLIP/framer.css?raw";
 
-## 例子
+## FLIP 在 react 中的应用
 
-TODO 
+### TL;DR
 
-<Sandpack template="react" client:only="react" class="no-prose" />
+最简单的方法是使用
+
+- [framer-motion](https://www.framer.com/motion/)中的[layoutId](https://www.framer.com/docs/layout-group/#namespace-layoutid)来实现共享元素过渡
+- [react-flip-toolkit](https://www.npmjs.com/package/react-flip-toolkit)这个工具集合来实现多种 `FLIP` 效果
+
+<Sandpack
+  customSetup={{
+    dependencies: {
+      "framer-motion": "latest",
+    },
+  }}
+  files={{
+    "/App.js": framerjs,
+    "/styles.css": framercss,
+  }}
+  theme={{...theme}}
+  options={{
+    showNavigator: true,
+    editorHeight: 400,
+    editorWidthPercentage: 60,
+  }}
+  template="react"
+  client:only="react"
+  class="no-prose"
+/>

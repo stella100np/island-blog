@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  -webkit-font-smoothing: auto;
+  -moz-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  font-smooth: always;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+ul {
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+}
+li {
+  list-style: none;
+  position: relative;
+
+}
+.item {
+  width: 100%;
+  z-index: 10;
+  position: relative;
+  padding: 0.25rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+}
+
+.selected-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 18px;
+  background: rgb(243, 244, 246);
+}
