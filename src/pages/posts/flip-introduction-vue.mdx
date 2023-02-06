@@ -11,8 +11,9 @@ lang: "en"
 import { Sandpack } from "@codesandbox/sandpack-react";
 import theme from "../../example/theme.js";
 import vuecode from "../../example/flip/demo.vue?raw";
+import dm from "../../assets/deepmind-Vc0CmuIfMg0-unsplash.jpg";
 
-![deepmind](/src/assets/deepmind-Vc0CmuIfMg0-unsplash.jpg)
+<img src={dm} alt="vue rendering" />
 
 ## TL;DR
 
@@ -33,7 +34,7 @@ Further, we can continue the flip steps(invert and play) like [those](./what-is-
     editorHeight: 350,
     editorWidthPercentage: 70,
   }}
-  theme={{...theme}}
+  theme={{ ...theme }}
   files={{ "/src/App.vue": vuecode }}
   client:only="react"
   class="no-prose"
