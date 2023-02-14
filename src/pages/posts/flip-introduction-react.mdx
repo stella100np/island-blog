@@ -12,10 +12,11 @@ import theme from "../../example/theme.js";
 import {framerjs, framercss} from "../../example/flip/index.js";
 
 
-## FLIP 在 react 中的应用
+## 介绍如何在react中使用FLIP技术进行动画
 
 ### TL;DR
 
+动画是一种能够提高用户体验和交互性的重要功能，但是在react中实现动画并不是一件容易的事情。react是一个用于构建用户界面的库，它主要关注的是数据和视图之间的同步，而不是视图之间的过渡。因此，如果我们想要在react中实现一些复杂的动画效果，我们就需要借助一些额外的工具和技术。
 最简单的方法是使用
 
 - [framer-motion](https://www.framer.com/motion/)中的[layoutId](https://www.framer.com/docs/layout-group/#namespace-layoutid)来实现共享元素过渡
@@ -41,3 +42,60 @@ import {framerjs, framercss} from "../../example/flip/index.js";
   client:only="react"
   class="no-prose"
 />
+
+### 细节介绍
+FLIP 是一种用于 Web 动画的技术，可以帮助您在 Web 应用程序中实现流畅的、高性能的动画效果。FLIP 技术的核心思想是在动画开始之前记录元素的首末位置和大小，然后通过 CSS transform 以及 opacity 属性对元素进行动画处理，最后再将元素恢复到初始状态。这种方法可以减少浏览器重新布局和绘制的次数，从而提高动画效果的性能。
+
+在 React 中使用 FLIP 技术，通常需要使用 refs 来获取组件中要动画的元素的引用。可以使用 React 的 useRef 钩子来获取元素的引用。然后，通过计算元素在开始和结束时的位置和大小，可以创建动画的关键帧。最后，使用 CSS transform 和 opacity 属性来处理动画效果。
+
+以下是一个简单的使用 FLIP 技术在 React 中创建动画的示例：
+
+```jsx
+import { useRef, useState, useEffect } from 'react';
+import './styles.css';
+
+function App() {
+  const boxRef = useRef(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    if (isAnimating) {
+      const box = boxRef.current;
+
+      // 获取元素在开始和结束时的位置和大小
+      const firstRect = box.getBoundingClientRect();
+      box.classList.add('animating');
+      const lastRect = box.getBoundingClientRect();
+      const deltaX = firstRect.left - lastRect.left;
+      const deltaY = firstRect.top - lastRect.top;
+      const deltaW = firstRect.width / lastRect.width;
+      const deltaH = firstRect.height / lastRect.height;
+
+      // 将元素移动到开始位置，同时保持原始大小
+      box.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH})`;
+
+      // 在下一帧移动元素到结束位置
+      requestAnimationFrame(() => {
+        box.style.transform = '';
+      });
+
+      // 在动画结束后移除 animating 类
+      box.addEventListener('transitionend', () => {
+        box.classList.remove('animating');
+        setIsAnimating(false);
+      });
+    }
+  }, [isAnimating]);
+
+  return (
+    <div>
+      <button onClick={() => setIsAnimating(true)}>Animate</button>
+      <div ref={boxRef} className="box" />
+    </div>
+  );
+}
+
+export default App;
+
+```
+在上面的示例中，我们使用 useRef 钩子获取了 box 元素的引用。当用户单击按钮时，isAnimating 状态设置为 true，从而触发 useEffect 钩子的执行。在 useEffect 钩子中，我们计算了元素在开始和结束时的位置和大小，并将元素移动到开始位置，同时保持原始大小。在下一帧中，我们移动元素到结束位置，并在动画结束后将 animating 类移除。最后，我们将 boxRef 绑定到 div 元素，并添加一个 CSS 类 box 来设置元素的样式。
