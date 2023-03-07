@@ -1,11 +1,17 @@
 import type { ShikiConfig } from 'astro';
 
-const red = { 0: '#ff657c' };
 const yellow = { 0: '#EBCB8B', 1: '#ffbd2e' };
-const blue = { 0: '#66adff', 1: '#5E81AC' };
-const green = { 0: '#16c082' };
-const cyan = { 0: '#23b1af' };
-const grey = { 0: '#d8dee9', 1: '#c7c5d3', 2: '#aba8bd', 9: '#312749' };
+const blue = { 0: '#f472b6', 1: '#5E81AC' };
+const green = { 0: '#7dd3fc' };
+const cyan = { 0: '#2e7692' };
+const grey = {
+	0: '#d8dee9',
+	1: '#64748b',
+	2: '#A7B6C2',
+	9: '#312749'
+};
+const pink = "#f472b6"
+const purple = "#c792ea"
 
 const foregroundPrimary = grey[0];
 const backgroundPrimary = grey[9];
@@ -39,6 +45,7 @@ export const theme: ShikiConfig['theme'] = {
 			scope: 'comment',
 			settings: {
 				foreground: grey[2],
+				fontStyle: "italic",
 			},
 		},
 		{
@@ -59,7 +66,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Constant Language',
 			scope: 'constant.language',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -87,14 +94,14 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Entity Name Function',
 			scope: 'entity.name.function',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
 			name: 'Entity Name Tag',
 			scope: 'entity.name.tag',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -125,28 +132,28 @@ export const theme: ShikiConfig['theme'] = {
 			scope: 'invalid.illegal',
 			settings: {
 				foreground: foregroundPrimary,
-				background: red[0],
+				background: purple,
 			},
 		},
 		{
 			name: 'Keyword',
 			scope: 'keyword',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Keyword Operator',
 			scope: 'keyword.operator',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Keyword Other New',
 			scope: 'keyword.other.new',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -167,7 +174,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Markup Deleted',
 			scope: 'markup.deleted',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -231,28 +238,28 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Punctuation Section Embedded',
 			scope: ['punctuation.section.embedded.begin', 'punctuation.section.embedded.end'],
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Punctuation Terminator',
 			scope: 'punctuation.terminator',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Punctuation Variable',
 			scope: 'punctuation.definition.variable',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Storage',
 			scope: 'storage',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -280,21 +287,21 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Support Constant',
 			scope: 'support.constant',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Support Function',
 			scope: 'support.function',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
 			name: 'Support Function Construct',
 			scope: 'support.function.construct',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -322,14 +329,14 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Token Error',
 			scope: 'token.error-token',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: 'Token Info',
 			scope: 'token.info-token',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
@@ -350,7 +357,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: 'Variable Language',
 			scope: 'variable.language',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -378,7 +385,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[Astro] Embedded expressions as HTML props',
 			scope: ['expression.embbeded.astro'],
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -392,7 +399,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[C/CPP] Punctuation Separator Pointer-Access',
 			scope: 'punctuation.separator.pointer-access.c',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -454,7 +461,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[CSS](Function) Meta Property-Value',
 			scope: 'source.css meta.property-value',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
@@ -506,7 +513,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[diff] Punctuation Definition Separator',
 			scope: 'source.diff punctuation.definition.separator',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -561,7 +568,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[JavaScript] Meta Object-Literal Key',
 			scope: 'source.js meta.object-literal.key',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
@@ -579,7 +586,7 @@ export const theme: ShikiConfig['theme'] = {
 				'source.js string.template punctuation.definition.template-expression',
 			],
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -603,7 +610,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[JavaScript] Support Type Primitive',
 			scope: 'source.js support.type.primitive',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -666,21 +673,21 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[HTML] Punctuation Definition Entity',
 			scope: 'text.html.basic punctuation.definition.entity',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: '[INI] Entity Name Section Group-Title',
 			scope: 'source.properties entity.name.section.group-title.ini',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
 			name: '[INI] Punctuation Separator Key-Value',
 			scope: 'source.properties punctuation.separator.key-value.ini',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -697,7 +704,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[Markdown] Markup Heading',
 			scope: 'markup.heading',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
@@ -728,7 +735,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[Markdown] Markup List Numbered/Unnumbered',
 			scope: 'text.html.markdown beginning.punctuation.definition.list',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -749,7 +756,7 @@ export const theme: ShikiConfig['theme'] = {
 			name: '[Markdown] Markup Math Constant',
 			scope: 'text.html.markdown constant.character.math.tex',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -759,28 +766,28 @@ export const theme: ShikiConfig['theme'] = {
 				'text.html.markdown punctuation.definition.math.end',
 			],
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
 			name: '[Markdown] Markup Math Function Definition Marker',
 			scope: 'text.html.markdown punctuation.definition.function.math.tex',
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
 			name: '[Markdown] Markup Math Operator',
 			scope: 'text.html.markdown punctuation.math.operator.latex',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
 			name: '[Markdown] Punctuation Definition Heading',
 			scope: 'text.html.markdown punctuation.definition.heading',
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -790,7 +797,7 @@ export const theme: ShikiConfig['theme'] = {
 				'text.html.markdown punctuation.definition.string',
 			],
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -801,7 +808,7 @@ export const theme: ShikiConfig['theme'] = {
 				'text.html.markdown string.other.link.title',
 			],
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{
@@ -811,7 +818,7 @@ export const theme: ShikiConfig['theme'] = {
 				'source.css.scss punctuation.definition.interpolation.end.bracket.curly',
 			],
 			settings: {
-				foreground: red[0],
+				foreground: purple,
 			},
 		},
 		{
@@ -850,7 +857,7 @@ export const theme: ShikiConfig['theme'] = {
 				'source.tsx meta.object-literal.key entity.name.function',
 			],
 			settings: {
-				foreground: blue[0],
+				foreground: pink,
 			},
 		},
 		{

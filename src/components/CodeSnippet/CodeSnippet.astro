@@ -145,11 +145,10 @@ function parseMarkingDefinition(
 <style lang="scss" is:global>
 	.code-snippet {
 		--glow-border: 1px solid var(--theme-glow-highlight);
-		--tw-text-opacity: 1;
+		font-size: 13px;
 
 		.header,
 		pre {
-			border: var(--glow-border);
 			border-radius: 0.3rem;
 			line-height: 1.65;
 		}
@@ -162,16 +161,20 @@ function parseMarkingDefinition(
 			z-index: 1;
 			position: relative;
 			top: 1px;
-			background-color: red;
-			color: rgb(244 114 182 / var(--tw-text-opacity));
+			background-color: #1f2937;
+			color: #d8dee9;
 			font-size: 0.9rem;
 			font-weight: 500;
 			letter-spacing: 0.025ch;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
 		}
 
 		pre {
 			margin: 0;
-			background-color: rgb(45 212 191 / 0.15);
+			padding: var(--padding-block) 0;
+			background-color: var(--theme-code-bg) !important;
+			box-shadow: 0 0 var(--theme-glow-blur) var(--theme-glow-diffuse);
 
 			&:focus-visible {
 				outline: 3px solid var(--theme-accent);
@@ -204,39 +207,44 @@ function parseMarkingDefinition(
 					&.mark,
 					&.ins,
 					&.del {
-						--accent-margin: 0rem;
-						--accent-width: 0.15rem;
-						background: var(--line-marker-bg-color);
-						margin-inline-start: var(--accent-margin);
-						border-inline-start: var(--accent-width) solid
-							var(--line-marker-border-color);
-						padding-inline-start: calc(
-							var(--padding-inline) - var(--accent-margin) - var(--accent-width)
-						) !important;
-						&::before {
-							position: absolute;
-							left: 0.5rem;
-						}
+						display: block;
+						position: relative;
+						padding-left: 2rem;
+						padding-right: 1.25rem;
+						border-left-width: 4px;
 					}
 					&.mark {
-						--line-marker-bg-color: var(--theme-code-mark-bg);
-						--line-marker-border-color: var(--theme-code-mark-border);
+						background: var(--theme-code-mark-bg);
+						box-shadow: 0 0 0 0.05rem var(--theme-code-mark-bg),
+							0 0 0 0.1rem var(--theme-code-mark-border);
+						border-left-width: 0px;
 					}
 					&.ins {
 						background-color: rgb(45 212 191 / 0.15);
 						--tw-border-opacity: 1;
-						border-color: rgb(45 212 191 / var(--tw-border-opacity));
+						border-color: rgb(
+							45 212 191 / var(--tw-border-opacity)
+						);
 						&::before {
 							--tw-content: "+";
 							content: var(--tw-content);
+							position: absolute;
+							top: 0px;
+							left: 1rem;
 							--tw-text-opacity: 1;
 							color: rgb(45 212 191 / var(--tw-text-opacity));
 						}
 					}
 					&.del {
-						--line-marker-bg-color: var(--theme-code-del-bg);
-						--line-marker-border-color: var(--theme-code-del-border);
+						background-color: rgb(244 63 94 / 0.15);
+						--tw-border-opacity: 1;
+						border-color: rgb(
+							251 113 133 / var(--tw-border-opacity)
+						);
 						&::before {
+							position: absolute;
+							top: 0px;
+							left: 1rem;
 							--tw-content: "-";
 							--tw-text-opacity: 1;
 							content: var(--tw-content);
@@ -249,18 +257,30 @@ function parseMarkingDefinition(
 					& ins,
 					& del {
 						all: unset;
+						background: var(--inline-marker-bg-color);
+						box-shadow: 0 0 0 0.05rem var(--inline-marker-bg-color),
+							0 0 0 0.1rem var(--inline-marker-border-color);
+						border-radius: 0.05rem;
+						padding-inline: 0.05rem;
+						margin-inline: 0.1rem;
 					}
 					& mark {
 						--inline-marker-bg-color: var(--theme-code-mark-bg);
-						--inline-marker-border-color: var(--theme-code-mark-border);
+						--inline-marker-border-color: var(
+							--theme-code-mark-border
+						);
 					}
 					& ins {
 						--inline-marker-bg-color: var(--theme-code-ins-bg);
-						--inline-marker-border-color: var(--theme-code-ins-border);
+						--inline-marker-border-color: var(
+							--theme-code-ins-border
+						);
 					}
 					& del {
 						--inline-marker-bg-color: var(--theme-code-del-bg);
-						--inline-marker-border-color: var(--theme-code-del-border);
+						--inline-marker-border-color: var(
+							--theme-code-del-border
+						);
 					}
 				}
 			}
@@ -305,7 +325,7 @@ function parseMarkingDefinition(
 
 		::selection {
 			color: white;
-			background-color: var(--theme-code-selection-bg);
+			background-color: #7dd3fc;
 		}
 	}
 </style>
@@ -314,8 +334,8 @@ function parseMarkingDefinition(
 		"code-snippet",
 		isTerminal && "is-terminal",
 		titleHtml && "has-title",
+		"not-prose",
 		`lang-${lang}`,
-		"no-prose",
 	]}
 >
 	<figcaption class="header">
