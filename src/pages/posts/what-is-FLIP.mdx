@@ -25,7 +25,7 @@ layout: '../../layouts/BlogPost.astro'
 
 ### FLIP 代码例子
 
-```js
+```js 
 // 获取元素的开始的位置 -- First
 let first = el.getBoundingClientRect()
 
@@ -60,3 +60,21 @@ player.addEventListener('finish', tidyUpAnimations)
 总的来说，`FLIP` 技术利用浏览器渲染流程中的布局与绘图流程，所以理解其原理需要开发者对浏览器渲染有一定的了解。
 
 之后，我将介绍 `FLIP` 的各种应用，包括在 `vue` 和 `react` 等框架中。
+
+
+
+3. Add the following frontmatter property in `post-1.md`
+
+    ```markdown title="src/pages/posts/post-1.md" ins={2}
+    ---
+    layout: ../../layouts/MarkdownPostLayout.astro
+    title: 'My First Blog Post'
+    pubDate: 2022-07-01
+    description: 'This is the first post of my new Astro blog.'
+    author: 'Astro Learner'
+    image:
+        url: 'https://astro.build/assets/blog/astro-1-release-update/cover.jpeg' 
+        alt: 'The Astro logo with the word One.'
+    tags: ["astro", "blogging", "learning in public"]
+    ---
+    ```
